@@ -211,16 +211,16 @@ class _HomePageState extends State<HomePage> {
                   ],
                 ),
               )),
-          GestureDetector(
-            onTap: () {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => DetallePage(),
-                  ));
-            },
-            child: Expanded(
-                flex: 2,
+          Expanded(
+              flex: 2,
+              child: GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => DetallePage(),
+                      ));
+                },
                 child: Container(
                   color: Color.fromARGB(255, 240, 46, 98),
                   child: Row(
@@ -232,8 +232,8 @@ class _HomePageState extends State<HomePage> {
                               fontSize: 30, fontWeight: FontWeight.bold),
                         ),
                       ]),
-                )),
-          )
+                ),
+              ))
         ],
       ),
     );
