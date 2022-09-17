@@ -9,9 +9,9 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  double peso = 0.0;
-  int edad = 0;
-  double estatura = 0;
+  double peso = 50.0;
+  int edad = 10;
+  double estatura = 50.0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,6 +32,10 @@ class _HomePageState extends State<HomePage> {
                         child: Padding(
                       padding: const EdgeInsets.all(15),
                       child: Container(
+                        decoration: BoxDecoration(
+                          color: Color.fromARGB(223, 33, 28, 58),
+                          borderRadius: BorderRadius.circular(10),
+                        ),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
@@ -42,10 +46,6 @@ class _HomePageState extends State<HomePage> {
                             Text("Hombre")
                           ],
                         ),
-                        decoration: BoxDecoration(
-                          color: Color.fromARGB(223, 33, 28, 58),
-                          borderRadius: BorderRadius.circular(10),
-                        ),
                       ),
                     )),
                     //Mujer
@@ -53,6 +53,10 @@ class _HomePageState extends State<HomePage> {
                         child: Padding(
                       padding: const EdgeInsets.all(15),
                       child: Container(
+                        decoration: BoxDecoration(
+                          color: const Color.fromARGB(223, 33, 28, 58),
+                          borderRadius: BorderRadius.circular(10),
+                        ),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
@@ -63,10 +67,6 @@ class _HomePageState extends State<HomePage> {
                             Text("Mujer")
                           ],
                         ),
-                        decoration: BoxDecoration(
-                          color: const Color.fromARGB(223, 33, 28, 58),
-                          borderRadius: BorderRadius.circular(10),
-                        ),
                       ),
                     )),
                   ],
@@ -75,10 +75,14 @@ class _HomePageState extends State<HomePage> {
           Expanded(
               flex: 5,
               child: Container(
-                color: Color.fromARGB(226, 22, 19, 38),
+                color: const Color.fromARGB(226, 22, 19, 38),
                 child: Padding(
                   padding: const EdgeInsets.all(15),
                   child: Container(
+                    decoration: BoxDecoration(
+                      color: const Color.fromARGB(223, 33, 28, 58),
+                      borderRadius: BorderRadius.circular(10),
+                    ),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -88,7 +92,7 @@ class _HomePageState extends State<HomePage> {
                           children: [
                             Text(
                               "${estatura.toInt()}",
-                              style: TextStyle(
+                              style: const TextStyle(
                                   fontSize: 40, fontWeight: FontWeight.bold),
                             ),
                             Text("cm")
@@ -96,8 +100,12 @@ class _HomePageState extends State<HomePage> {
                         ),
                         Slider(
                           value: estatura,
-                          max: 300,
-                          min: 0,
+                          max: 250.0,
+                          min: 50.0,
+                          activeColor: Colors.white,
+                          inactiveColor:
+                              const Color.fromARGB(145, 255, 255, 255),
+                          thumbColor: Color.fromARGB(255, 240, 46, 98),
                           onChanged: (double value) {
                             setState(() {
                               estatura = value;
@@ -106,31 +114,31 @@ class _HomePageState extends State<HomePage> {
                         ),
                       ],
                     ),
-                    decoration: BoxDecoration(
-                      color: const Color.fromARGB(223, 33, 28, 58),
-                      borderRadius: BorderRadius.circular(10),
-                    ),
                   ),
                 ),
               )),
           Expanded(
               flex: 5,
               child: Container(
-                color: Color.fromARGB(226, 22, 19, 38),
+                color: const Color.fromARGB(226, 22, 19, 38),
                 child: Row(
                   children: [
                     Expanded(
                         child: Padding(
                       padding: const EdgeInsets.all(15),
                       child: Container(
+                        decoration: BoxDecoration(
+                          color: const Color.fromARGB(223, 33, 28, 58),
+                          borderRadius: BorderRadius.circular(10),
+                        ),
                         child: Container(
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Text("Peso"),
                               Text(
-                                "${peso}",
-                                style: TextStyle(
+                                "$peso",
+                                style: const TextStyle(
                                     fontSize: 40, fontWeight: FontWeight.bold),
                               ),
                               Row(
@@ -140,27 +148,28 @@ class _HomePageState extends State<HomePage> {
                                       iconSize: 50,
                                       onPressed: () {
                                         setState(() {
-                                          peso--;
+                                          if (peso > 50) {
+                                            peso--;
+                                          }
                                         });
                                       },
-                                      icon:
-                                          Icon(Icons.remove_circle, size: 50)),
+                                      icon: const Icon(Icons.remove_circle,
+                                          size: 50)),
                                   IconButton(
                                       iconSize: 50,
                                       onPressed: () {
                                         setState(() {
-                                          peso++;
+                                          if (peso < 500) {
+                                            peso++;
+                                          }
                                         });
                                       },
-                                      icon: Icon(Icons.add_circle, size: 50)),
+                                      icon: const Icon(Icons.add_circle,
+                                          size: 50)),
                                 ],
                               ),
                             ],
                           ),
-                        ),
-                        decoration: BoxDecoration(
-                          color: const Color.fromARGB(223, 33, 28, 58),
-                          borderRadius: BorderRadius.circular(10),
                         ),
                       ),
                     )),
@@ -168,43 +177,45 @@ class _HomePageState extends State<HomePage> {
                         child: Padding(
                       padding: const EdgeInsets.all(15),
                       child: Container(
-                        child: Container(
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text("Edad"),
-                              Text(
-                                "${edad}",
-                                style: TextStyle(
-                                    fontSize: 40, fontWeight: FontWeight.bold),
-                              ),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  IconButton(
-                                      iconSize: 50,
-                                      onPressed: () {
-                                        setState(() {
-                                          edad--;
-                                        });
-                                      },
-                                      icon: Icon(Icons.remove_circle)),
-                                  IconButton(
-                                      iconSize: 50,
-                                      onPressed: () {
-                                        setState(() {
-                                          edad++;
-                                        });
-                                      },
-                                      icon: Icon(Icons.add_circle)),
-                                ],
-                              ),
-                            ],
-                          ),
-                        ),
                         decoration: BoxDecoration(
                           color: const Color.fromARGB(223, 33, 28, 58),
                           borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            const Text("Edad"),
+                            Text(
+                              "$edad",
+                              style: const TextStyle(
+                                  fontSize: 40, fontWeight: FontWeight.bold),
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                IconButton(
+                                    iconSize: 50,
+                                    onPressed: () {
+                                      setState(() {
+                                        if (edad > 10) {
+                                          edad--;
+                                        }
+                                      });
+                                    },
+                                    icon: const Icon(Icons.remove_circle)),
+                                IconButton(
+                                    iconSize: 50,
+                                    onPressed: () {
+                                      setState(() {
+                                        if (edad < 120) {
+                                          edad++;
+                                        }
+                                      });
+                                    },
+                                    icon: const Icon(Icons.add_circle)),
+                              ],
+                            ),
+                          ],
                         ),
                       ),
                     )),
@@ -215,10 +226,51 @@ class _HomePageState extends State<HomePage> {
               flex: 2,
               child: GestureDetector(
                 onTap: () {
+                  double imc = peso / (estatura * estatura);
+                  String estado = "";
+                  String mensaje = "";
+                  Color color = Colors.white;
+                  if (imc < 18.5) {
+                    estado = "Bajo Peso";
+                    mensaje = "Tiene un peso coporal bajo.\n¡Ten cuidado!";
+                    color = Colors.orangeAccent;
+                  } else if (imc >= 18.5 && imc <= 24.9) {
+                    estado = "Normal";
+                    mensaje = "Tiene un peso coporal normal.\n¡Buen trabajo!";
+                    color = Colors.green;
+                  } else if (imc >= 25 && imc < 29.9) {
+                    estado = "Sobrepeso";
+                    mensaje = "Tiene sobrepeso corporal.\n¡Ejercitate un poco!";
+                    color = Colors.orange;
+                  } else if (imc >= 30 && imc < 34.9) {
+                    estado = "Obesidad I";
+                    mensaje =
+                        "Tiene Obesidad tipo I.\n¡Acude a un especialista!";
+                    color = Colors.redAccent;
+                  } else if (imc >= 35 && imc < 39.9) {
+                    estado = "Obesidad II";
+                    mensaje =
+                        "Tiene Obesidad tipo II.\n¡Acude a un especialista!";
+                    color = Colors.red;
+                  } else if (imc >= 40 && imc < 49.9) {
+                    estado = "Obesidad III";
+                    mensaje =
+                        "Tiene Obesidad tipo III.\n¡Acude a un especialista!";
+                    color = Color.fromARGB(255, 163, 43, 34);
+                  } else if (imc < 50) {
+                    estado = "Obesidad IV";
+                    mensaje =
+                        "Tiene Obesidad tipo IV.\n¡Acude a un especialista!";
+                    color = Color.fromARGB(255, 114, 33, 27);
+                  }
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => DetallePage(),
+                        builder: (context) => DetallePage(
+                            imc: imc,
+                            estado: estado,
+                            color: color,
+                            mensaje: mensaje),
                       ));
                 },
                 child: Container(
